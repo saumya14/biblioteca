@@ -14,10 +14,40 @@ public class biblioteca {
     public static final int RESERVED=1;
     public static final int AVAILABLE=0;
 
-    ArrayList listOfBooks;
+    public class Book{
+        String sBookName;
+        int iStatus;
+
+        Book()
+        {
+            sBookName="";
+            iStatus=AVAILABLE;
+        }
+        Book(String sBookName,int iStatus)
+        {
+            this.sBookName=sBookName;
+            this.iStatus=iStatus;
+        }
+
+        String displayBook()
+        {
+            return sBookName+"\t"+iStatus;
+        }
+    }
+    Book listOfBooks[];
     biblioteca()
     {
-        listOfBooks = new ArrayList();
+        listOfBooks=new Book[10];
+        listOfBooks[0]=new Book("Harry Potter 1",AVAILABLE);
+        listOfBooks[1]=new Book("Harry Potter 2",AVAILABLE);
+        listOfBooks[2]=new Book("Harry Potter 3",AVAILABLE);
+        listOfBooks[3]=new Book("Harry Potter 4",AVAILABLE);
+        listOfBooks[4]=new Book("Harry Potter 5",AVAILABLE);
+        listOfBooks[5]=new Book("Harry Potter 6",AVAILABLE);
+        listOfBooks[6]=new Book("Harry Potter 7",AVAILABLE);
+        listOfBooks[7]=new Book("Little Women 1",AVAILABLE);
+        listOfBooks[8]=new Book("Little Women 2",AVAILABLE);
+        listOfBooks[9]=new Book("Little Women 3",AVAILABLE);
     }
 
     String displayWelcomeMessage()
@@ -27,7 +57,11 @@ public class biblioteca {
 
     void displayAllBooks()
     {
-
+           System.out.println("Book Name------Status( 0 means Available/1 stands for reserved");
+           for(int iCounter=0;iCounter<=9;iCounter++)
+           {
+               System.out.println(listOfBooks[iCounter].displayBook());
+           }
     }
 
     void reserveBook()
@@ -40,11 +74,11 @@ public class biblioteca {
 
 
     }
-    void displayOptions()  throws IOException
+    int displayOptions()  throws IOException
     {
         BufferedReader dataInput=new BufferedReader(new InputStreamReader(System.in)) ;
-        int intChoice;
-        String choice;
+        int iChoice;
+        String sChoice;
 
         System.out.println("Please choose what you want to do from the list given below: ");
         System.out.println("1->See all the books in the library");
@@ -52,33 +86,31 @@ public class biblioteca {
         System.out.println("3->Check your details");
 
         do{
-            System.out.println("Please enter a valid choice:");
-            choice= dataInput.readLine();
-            intChoice=Integer.parseInt(choice);
-        }while(intChoice!=1 && intChoice!=2 && intChoice!=3);
+            System.out.print("Please enter a valid choice:");
+            sChoice= dataInput.readLine();
+            iChoice=Integer.parseInt(sChoice);
+        }while(iChoice!=1 && iChoice!=2 && iChoice!=3);
 
-
-        switch(intChoice)
-        {
-            case 1: displayAllBooks();
-                    break;
-            case 2: reserveBook();
-                    break;
-            case 3: viewDetails();
-                    break;
-
-        }
-
-
+        return iChoice;
     }
-
-
 
     public static void main( String args[]) throws IOException
     {
+        int iMemberChoice;
+
         biblioteca Biblioteca=new biblioteca();
         System.out.println(Biblioteca.displayWelcomeMessage());
-        Biblioteca.displayOptions();
+        iMemberChoice=Biblioteca.displayOptions();
+
+        switch(iMemberChoice)
+        {
+            case 1: Biblioteca.displayAllBooks();
+                break;
+            case 2: Biblioteca.reserveBook();
+                break;
+            case 3: Biblioteca.viewDetails();
+                break;
+        }
 
     }
 
