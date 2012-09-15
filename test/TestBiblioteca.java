@@ -16,6 +16,13 @@ public class TestBiblioteca {
         assertTrue(bTest.displayWelcomeMessage().equals("--------Hi Member. Welcome to Bangalore Biblioteca--------"));
 
     }
+    @Test
+    public void testDisplayAll()
+    {
+        biblioteca bTest=new biblioteca("ABC",1);
+        assertTrue(bTest.displayAllBooks()==0);
+    }
+
 
 
 

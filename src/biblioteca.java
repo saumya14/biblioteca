@@ -57,6 +57,11 @@ public class biblioteca {
         listOfBooks[8]=new Book("Little Women 2",AVAILABLE);
         listOfBooks[9]=new Book("Little Women 3",AVAILABLE);
     }
+    biblioteca(String sBookName,int iStatus)
+    {
+        listOfBooks = new Book[1];
+        listOfBooks[0]=new Book(sBookName,iStatus);
+    }
 
 
     String displayWelcomeMessage()
@@ -64,13 +69,15 @@ public class biblioteca {
         return "--------Hi Member. Welcome to Bangalore Biblioteca--------";
     }
 
-    void displayAllBooks()
+    int displayAllBooks()
     {
            System.out.println("Book Name------Status( 0 means Available/1 stands for reserved");
-           for(int iCounter=0;iCounter<=9;iCounter++)
+
+           for(int iCounter=0;iCounter<=listOfBooks.length-1;iCounter++)
            {
                System.out.println(listOfBooks[iCounter].getsBookName()+"\t\t"+listOfBooks[iCounter].getiStatus());
            }
+        return 0;
     }
     Book findBookAvailability(String bookName)
     {
@@ -115,7 +122,7 @@ public class biblioteca {
 
     String viewDetails()
     {
-          return "“Please talk to Librarian. Thank you.";
+          return "“Please talk to Librarian. Thank you.\n";
 
     }
     int displayOptions()  throws IOException
@@ -124,7 +131,7 @@ public class biblioteca {
         int iChoice;
         String sChoice;
 
-        System.out.println("Please choose what you want to do from the list given below: ");
+        System.out.println("--------Please choose what you want to do from the list given below:------");
         System.out.println("1->See all the books in the library");
         System.out.println("2->Reserve a book") ;
         System.out.println("3->Check your details");
