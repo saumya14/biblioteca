@@ -29,9 +29,17 @@ public class biblioteca {
             this.iStatus=iStatus;
         }
 
-        String displayBook()
+        int getiStatus()
         {
-            return sBookName+"\t"+iStatus;
+            return iStatus;
+        }
+        String getsBookName()
+        {
+            return sBookName;
+        }
+        void setiStatus(int iStatus)
+        {
+            this.iStatus=iStatus;
         }
     }
     Book listOfBooks[];
@@ -50,6 +58,7 @@ public class biblioteca {
         listOfBooks[9]=new Book("Little Women 3",AVAILABLE);
     }
 
+
     String displayWelcomeMessage()
     {
         return "--------Hi Member. Welcome to Bangalore Biblioteca--------";
@@ -60,18 +69,53 @@ public class biblioteca {
            System.out.println("Book Name------Status( 0 means Available/1 stands for reserved");
            for(int iCounter=0;iCounter<=9;iCounter++)
            {
-               System.out.println(listOfBooks[iCounter].displayBook());
+               System.out.println(listOfBooks[iCounter].getsBookName()+"\t\t"+listOfBooks[iCounter].getiStatus());
            }
     }
-
-    void reserveBook()
+    Book findBookAvailability(String bookName)
     {
-
+        for(int iCounter=0;iCounter<=0;iCounter++)
+        {
+            if(listOfBooks[iCounter].getsBookName().equals(bookName))
+            {
+                return listOfBooks[iCounter];
+            }
+        }
+        return null;
     }
 
-    void viewDetails()
+    void reserveBook() throws IOException
     {
+        BufferedReader dataRead=new BufferedReader(new InputStreamReader(System.in));
+        String sReserveBookName;
+        Book requestedBook;
 
+        System.out.print("Enter the name of the book you want to reserve:\t");
+        sReserveBookName=dataRead.readLine();
+        requestedBook=findBookAvailability(sReserveBookName);
+
+        /*a null object would signify that the book is not present in the library */
+        if(requestedBook!=null)
+        {
+            if(requestedBook.getiStatus()==AVAILABLE)
+            {
+                System.out.println("“Thank You! Enjoy the book.\n");
+                requestedBook.setiStatus(RESERVED);
+            }
+            else
+            {
+                System.out.println("Sorry the book is already reserved");
+            }
+        }
+        else
+        {
+            System.out.println("“Sorry we don't have that book yet");
+        }
+    }
+
+    String viewDetails()
+    {
+          return "“Please talk to Librarian. Thank you.";
 
     }
     int displayOptions()  throws IOException
@@ -84,12 +128,13 @@ public class biblioteca {
         System.out.println("1->See all the books in the library");
         System.out.println("2->Reserve a book") ;
         System.out.println("3->Check your details");
+        System.out.println("4->Exit");
 
         do{
             System.out.print("Please enter a valid choice:");
             sChoice= dataInput.readLine();
             iChoice=Integer.parseInt(sChoice);
-        }while(iChoice!=1 && iChoice!=2 && iChoice!=3);
+        }while(iChoice!=1 && iChoice!=2 && iChoice!=3 && iChoice!=4);
 
         return iChoice;
     }
@@ -102,14 +147,18 @@ public class biblioteca {
         System.out.println(Biblioteca.displayWelcomeMessage());
         iMemberChoice=Biblioteca.displayOptions();
 
-        switch(iMemberChoice)
+        while(iMemberChoice!=4)
         {
-            case 1: Biblioteca.displayAllBooks();
-                break;
-            case 2: Biblioteca.reserveBook();
-                break;
-            case 3: Biblioteca.viewDetails();
-                break;
+            switch(iMemberChoice)
+            {
+                case 1: Biblioteca.displayAllBooks();
+                    break;
+                case 2: Biblioteca.reserveBook();
+                    break;
+                case 3: System.out.println(Biblioteca.viewDetails());
+                    break;
+            }
+            iMemberChoice=Biblioteca.displayOptions();
         }
 
     }
