@@ -1,4 +1,11 @@
+import junit.framework.TestCase;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.OutputStream;
+
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -8,19 +15,44 @@ import static org.junit.Assert.assertTrue;
  * Time: 5:57 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TestBiblioteca {
+public class TestBiblioteca extends TestCase
+{
     @Test
-    public void testDisplayWelcomeMessage()
+    public void testDisplayWelcomeMessage()  throws Exception
     {
+        super.setUp();
         biblioteca bTest=new biblioteca();
-        assertTrue(bTest.displayWelcomeMessage().equals("--------Hi Member. Welcome to Bangalore Biblioteca--------"));
 
+        PrintStream originalOut=System.out;
+        OutputStream os=new ByteArrayOutputStream();
+        PrintStream ps=new PrintStream(os);
+        System.setOut(ps);
+
+        bTest.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
+        assertEquals("Hi Member. Welcome to Bangalore Biblioteca",os.toString());
+        System.setOut(originalOut);
     }
     @Test
     public void testDisplayAll()
     {
         biblioteca bTest=new biblioteca("ABC",1);
         assertTrue(bTest.displayAllBooks()==0);
+    }
+
+    @Test
+    public void testViewDetails()  throws Exception
+    {
+        super.setUp();
+        biblioteca bTest=new biblioteca();
+
+        PrintStream originalOut=System.out;
+        OutputStream os=new ByteArrayOutputStream();
+        PrintStream ps=new PrintStream(os);
+        System.setOut(ps);
+
+        bTest.displayWelcomeMessage("Please talk to Librarian. Thank you.");
+        assertEquals("Please talk to Librarian. Thank you.",os.toString());
+        System.setOut(originalOut);
     }
 
 

@@ -64,9 +64,9 @@ public class biblioteca {
     }
 
 
-    String displayWelcomeMessage()
+    void displayWelcomeMessage(String message)
     {
-        return "--------Hi Member. Welcome to Bangalore Biblioteca--------";
+        System.out.print(message);
     }
 
     int displayAllBooks()
@@ -120,9 +120,9 @@ public class biblioteca {
         }
     }
 
-    String viewDetails()
+    void viewDetails(String message)
     {
-          return "“Please talk to Librarian. Thank you.\n";
+          System.out.print(message);
 
     }
     int displayOptions()  throws IOException
@@ -151,7 +151,7 @@ public class biblioteca {
         int iMemberChoice;
 
         biblioteca Biblioteca=new biblioteca();
-        System.out.println(Biblioteca.displayWelcomeMessage());
+        Biblioteca.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
         iMemberChoice=Biblioteca.displayOptions();
 
         while(iMemberChoice!=4)
@@ -162,7 +162,7 @@ public class biblioteca {
                     break;
                 case 2: Biblioteca.reserveBook();
                     break;
-                case 3: System.out.println(Biblioteca.viewDetails());
+                case 3: Biblioteca.viewDetails("Please talk to Librarian. Thank you.");
                     break;
             }
             iMemberChoice=Biblioteca.displayOptions();
