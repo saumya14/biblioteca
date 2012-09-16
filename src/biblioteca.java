@@ -53,7 +53,7 @@ public class biblioteca {
         listOfBooks[4]=new Book("Harry Potter 5",AVAILABLE);
         listOfBooks[5]=new Book("Harry Potter 6",AVAILABLE);
         listOfBooks[6]=new Book("Harry Potter 7",AVAILABLE);
-        listOfBooks[7]=new Book("Little Women 1",AVAILABLE);
+        listOfBooks[7]=new Book("Little Women",AVAILABLE);
         listOfBooks[8]=new Book("Little Women 2",AVAILABLE);
         listOfBooks[9]=new Book("Little Women 3",AVAILABLE);
     }
@@ -81,7 +81,7 @@ public class biblioteca {
     }
     Book findBookAvailability(String bookName)
     {
-        for(int iCounter=0;iCounter<=0;iCounter++)
+        for(int iCounter=0;iCounter<listOfBooks.length-1;iCounter++)
         {
             if(listOfBooks[iCounter].getsBookName().equals(bookName))
             {
