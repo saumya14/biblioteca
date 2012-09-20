@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class Biblioteca {
-    Book listOfBooks[];
+    private Book listOfBooks[];
     Biblioteca()
     {
         listOfBooks=new Book[10];
@@ -64,7 +64,6 @@ public class Biblioteca {
         sReserveBookName=dataRead.readLine();
         requestedBook=findBookAvailability(sReserveBookName);
 
-
         /*a null object would signify that the book is not present in the library   */
         if(requestedBook==null)
             System.out.println("“Sorry we don't have that book yet");
@@ -76,16 +75,18 @@ public class Biblioteca {
                 requestedBook.setBookStatusToReserved();
             }
             else
+            {
                 System.out.println("Book is already issued to another member");
+            }
         }
     }
 
     void viewDetails(String message)
     {
           System.out.print(message);
-
     }
-    String displayOptions()  throws IOException
+
+    String displayOptions() throws IOException
     {
         BufferedReader dataInput=new BufferedReader(new InputStreamReader(System.in)) ;
         String choice;
@@ -96,25 +97,31 @@ public class Biblioteca {
         System.out.println("3->Check your details");
         System.out.println("4->Exit");
 
-        do{
+        do
+        {
             System.out.print("Please enter a valid choice:");
             choice= dataInput.readLine();
-        }while(choice!="1"&& choice!="2"&& choice!="3" && choice!="4");
+        }while(validateChoice(choice));
 
         return choice;
     }
 
+    public boolean validateChoice(String choice)
+    {
+        return(!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4"));
+    }
+
     public static void main( String args[]) throws IOException
     {
-        int iMemberChoice;
-
+        int memberChoice;
         Biblioteca library=new Biblioteca();
-        library.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
-        iMemberChoice=Integer.parseInt(library.displayOptions());
 
-        while(iMemberChoice!=4)
+        library.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
+
+        memberChoice=Integer.parseInt(library.displayOptions());
+        while(memberChoice!=4)
         {
-            switch(iMemberChoice)
+            switch(memberChoice)
             {
                 case 1: library.displayAllBooks();
                     break;
@@ -123,10 +130,7 @@ public class Biblioteca {
                 case 3: library.viewDetails("Please talk to Librarian. Thank you.");
                     break;
             }
-            iMemberChoice=Integer.parseInt(library.displayOptions());
+            memberChoice=Integer.parseInt(library.displayOptions());
         }
-
     }
-
-
 }

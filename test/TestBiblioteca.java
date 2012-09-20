@@ -43,15 +43,40 @@ public class TestBiblioteca extends TestCase
         OutputStream os=new ByteArrayOutputStream();
         PrintStream ps=new PrintStream(os);
         System.setOut(ps);
-
         bTest.displayWelcomeMessage("Please talk to Librarian. Thank you.");
+
         assertEquals("Please talk to Librarian. Thank you.",os.toString());
+
         System.setOut(originalOut);
     }
+    @Test
+    public void shouldSayBookAvailable()
+    {
+        boolean bookFound;
+        Biblioteca bTest=new Biblioteca();
 
+        assertEquals(bTest.findBookAvailability("Harry Potter 1"),true);
+    }
+    @Test
+    public void shouldSayBookNotAvailable()
+    {
+        boolean bookFound;
+        Biblioteca bTest=new Biblioteca();
 
+        assertEquals(bTest.findBookAvailability("Learn ABC"),false);
+    }
+    @Test
+    public void shouldSayNotValidChoice()
+    {
+        Biblioteca bTest=new Biblioteca();
 
+        assertEquals(false, bTest.validateChoice("7"));
+    }
+    @Test
+    public void shouldSayValidChoice()
+    {
+        Biblioteca bTest=new Biblioteca();
 
-
-
+        assertEquals(true, bTest.validateChoice("1"));
+    }
 }

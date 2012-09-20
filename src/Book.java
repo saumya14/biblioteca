@@ -7,13 +7,13 @@
  */
 public class Book
 {
-    String bookName;
-    boolean isAvailable;
+    private String bookName;
+    private boolean isAvailable;
 
-    Book(String bookName,boolean isAvailable)
+    Book(String name,boolean availability)
     {
-        this.bookName=bookName;
-        this.isAvailable=isAvailable;
+        bookName=name;
+        isAvailable=availability;
     }
     boolean getisAvailable()
     {
@@ -25,9 +25,7 @@ public class Book
     }
     boolean bookInLibrary(String bookToFind)
     {
-        if(bookName.equals(bookToFind))
-            return true;
-        return false;
+        return bookName.equals(bookToFind);
     }
     void setBookStatusToReserved()
     {
