@@ -21,7 +21,7 @@ public class TestBiblioteca extends TestCase
     public void testDisplayWelcomeMessage()  throws Exception
     {
         super.setUp();
-        biblioteca bTest=new biblioteca();
+        Biblioteca bTest=new Biblioteca();
 
         PrintStream originalOut=System.out;
         OutputStream os=new ByteArrayOutputStream();
@@ -32,18 +32,12 @@ public class TestBiblioteca extends TestCase
         assertEquals("Hi Member. Welcome to Bangalore Biblioteca",os.toString());
         System.setOut(originalOut);
     }
-    @Test
-    public void testDisplayAll()
-    {
-        biblioteca bTest=new biblioteca("ABC",1);
-        assertTrue(bTest.displayAllBooks()==0);
-    }
 
     @Test
     public void testViewDetails()  throws Exception
     {
         super.setUp();
-        biblioteca bTest=new biblioteca();
+        Biblioteca bTest=new Biblioteca();
 
         PrintStream originalOut=System.out;
         OutputStream os=new ByteArrayOutputStream();

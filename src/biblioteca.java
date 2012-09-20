@@ -10,80 +10,43 @@ import java.util.ArrayList;
  * Time: 1:26 PM
  * To change this template use File | Settings | File Templates.
  */
-public class biblioteca {
-    public static final int RESERVED=1;
-    public static final int AVAILABLE=0;
-
-    public class Book{
-        String sBookName;
-        int iStatus;
-
-        Book()
-        {
-            sBookName="";
-            iStatus=AVAILABLE;
-        }
-        Book(String sBookName,int iStatus)
-        {
-            this.sBookName=sBookName;
-            this.iStatus=iStatus;
-        }
-
-        int getiStatus()
-        {
-            return iStatus;
-        }
-        String getsBookName()
-        {
-            return sBookName;
-        }
-        void setiStatus(int iStatus)
-        {
-            this.iStatus=iStatus;
-        }
-    }
+public class Biblioteca {
     Book listOfBooks[];
-    biblioteca()
+    Biblioteca()
     {
         listOfBooks=new Book[10];
-        listOfBooks[0]=new Book("Harry Potter 1",AVAILABLE);
-        listOfBooks[1]=new Book("Harry Potter 2",AVAILABLE);
-        listOfBooks[2]=new Book("Harry Potter 3",AVAILABLE);
-        listOfBooks[3]=new Book("Harry Potter 4",AVAILABLE);
-        listOfBooks[4]=new Book("Harry Potter 5",AVAILABLE);
-        listOfBooks[5]=new Book("Harry Potter 6",AVAILABLE);
-        listOfBooks[6]=new Book("Harry Potter 7",AVAILABLE);
-        listOfBooks[7]=new Book("Little Women",AVAILABLE);
-        listOfBooks[8]=new Book("Little Women 2",AVAILABLE);
-        listOfBooks[9]=new Book("Little Women 3",AVAILABLE);
-    }
-    biblioteca(String sBookName,int iStatus)
-    {
-        listOfBooks = new Book[1];
-        listOfBooks[0]=new Book(sBookName,iStatus);
+        listOfBooks[0]=new Book("Harry Potter 1",true);
+        listOfBooks[1]=new Book("Harry Potter 2",true);
+        listOfBooks[2]=new Book("Harry Potter 3",true);
+        listOfBooks[3]=new Book("Harry Potter 4",true);
+        listOfBooks[4]=new Book("Harry Potter 5",true);
+        listOfBooks[5]=new Book("Harry Potter 6",true);
+        listOfBooks[6]=new Book("Harry Potter 7",true);
+        listOfBooks[7]=new Book("Little Women",true);
+        listOfBooks[8]=new Book("Little Women 2",true);
+        listOfBooks[9]=new Book("Little Women 3",true);
     }
 
-
-    void displayWelcomeMessage(String message)
+     void displayWelcomeMessage(String message)
     {
         System.out.print(message);
     }
 
     int displayAllBooks()
     {
-           System.out.println("Book Name------Status( 0 means Available/1 stands for reserved");
+           System.out.println("Book Name------Status");
 
            for(int iCounter=0;iCounter<=listOfBooks.length-1;iCounter++)
            {
-               System.out.println(listOfBooks[iCounter].getsBookName()+"\t\t"+listOfBooks[iCounter].getiStatus());
+               System.out.println(listOfBooks[iCounter].displayBookDetails());
            }
         return 0;
     }
-    Book findBookAvailability(String bookName)
+    Book findBookAvailability(String bookToSearch)
     {
         for(int iCounter=0;iCounter<listOfBooks.length-1;iCounter++)
         {
-            if(listOfBooks[iCounter].getsBookName().equals(bookName))
+            if(listOfBooks[iCounter].bookInLibrary(bookToSearch))
             {
                 return listOfBooks[iCounter];
             }
@@ -101,22 +64,19 @@ public class biblioteca {
         sReserveBookName=dataRead.readLine();
         requestedBook=findBookAvailability(sReserveBookName);
 
-        /*a null object would signify that the book is not present in the library */
-        if(requestedBook!=null)
-        {
-            if(requestedBook.getiStatus()==AVAILABLE)
-            {
-                System.out.println("“Thank You! Enjoy the book.\n");
-                requestedBook.setiStatus(RESERVED);
-            }
-            else
-            {
-                System.out.println("Sorry the book is already reserved");
-            }
-        }
+
+        /*a null object would signify that the book is not present in the library   */
+        if(requestedBook==null)
+            System.out.println("“Sorry we don't have that book yet");
         else
         {
-            System.out.println("“Sorry we don't have that book yet");
+            if(requestedBook.getisAvailable())
+            {
+                System.out.println("Thank you. Enjoy the book");
+                requestedBook.setBookStatusToReserved();
+            }
+            else
+                System.out.println("Book is already issued to another member");
         }
     }
 
@@ -125,11 +85,10 @@ public class biblioteca {
           System.out.print(message);
 
     }
-    int displayOptions()  throws IOException
+    String displayOptions()  throws IOException
     {
         BufferedReader dataInput=new BufferedReader(new InputStreamReader(System.in)) ;
-        int iChoice;
-        String sChoice;
+        String choice;
 
         System.out.println("--------Please choose what you want to do from the list given below:------");
         System.out.println("1->See all the books in the library");
@@ -139,35 +98,35 @@ public class biblioteca {
 
         do{
             System.out.print("Please enter a valid choice:");
-            sChoice= dataInput.readLine();
-            iChoice=Integer.parseInt(sChoice);
-        }while(iChoice!=1 && iChoice!=2 && iChoice!=3 && iChoice!=4);
+            choice= dataInput.readLine();
+        }while(choice!="1"&& choice!="2"&& choice!="3" && choice!="4");
 
-        return iChoice;
+        return choice;
     }
 
     public static void main( String args[]) throws IOException
     {
         int iMemberChoice;
 
-        biblioteca Biblioteca=new biblioteca();
-        Biblioteca.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
-        iMemberChoice=Biblioteca.displayOptions();
+        Biblioteca library=new Biblioteca();
+        library.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
+        iMemberChoice=Integer.parseInt(library.displayOptions());
 
         while(iMemberChoice!=4)
         {
             switch(iMemberChoice)
             {
-                case 1: Biblioteca.displayAllBooks();
+                case 1: library.displayAllBooks();
                     break;
-                case 2: Biblioteca.reserveBook();
+                case 2: library.reserveBook();
                     break;
-                case 3: Biblioteca.viewDetails("Please talk to Librarian. Thank you.");
+                case 3: library.viewDetails("Please talk to Librarian. Thank you.");
                     break;
             }
-            iMemberChoice=Biblioteca.displayOptions();
+            iMemberChoice=Integer.parseInt(library.displayOptions());
         }
 
     }
+
 
 }
