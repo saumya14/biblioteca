@@ -14,12 +14,13 @@ public class Movie {
     {
         movieName=name;
         directorName=dName;
+
         movieRating=rating;
     }
 
     public void displayMovieDetails()
     {
-             System.out.print(movieName+" "+directorName+" "+movieRating);
+             System.out.println(movieName+" "+directorName+" "+movieRating);
     }
 
 }

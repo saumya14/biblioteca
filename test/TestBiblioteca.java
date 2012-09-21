@@ -6,8 +6,6 @@ import java.io.PrintStream;
 import java.io.OutputStream;
 
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created with IntelliJ IDEA.
  * User: user

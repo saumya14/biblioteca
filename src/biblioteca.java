@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
     private Book listOfBooks[];
+    private Movie listOfMovies[];
     Biblioteca()
     {
         listOfBooks=new Book[10];
@@ -25,6 +26,23 @@ public class Biblioteca {
         listOfBooks[7]=new Book("Little Women",true);
         listOfBooks[8]=new Book("Little Women 2",true);
         listOfBooks[9]=new Book("Little Women 3",true);
+
+        listOfMovies=new Movie[15];
+        listOfMovies[0]=new Movie("LOTR -Fellowship","Peter Jackson","1");
+        listOfMovies[1]=new Movie("LOTR -Two Towers","Peter Jackson","1");
+        listOfMovies[2]=new Movie("LOTR -return of the King","Peter Jackson","1");
+        listOfMovies[3]=new Movie("Titanic","James","3");
+        listOfMovies[4]=new Movie("Titanic 3D","James","5");
+        listOfMovies[5]=new Movie("Shrek","Adam","1");
+        listOfMovies[6]=new Movie("Mission Impossible 1","Brian","1");
+        listOfMovies[7]=new Movie("Mission Impossible 2","Brian","1");
+        listOfMovies[8]=new Movie("Mission Impossible 3","Brian","1");
+        listOfMovies[9]=new Movie("Finding Nemo","ABC","8");
+        listOfMovies[10]=new Movie("Wall E","XYZ","9");
+        listOfMovies[11]=new Movie("Monsters Inc 1","James","5");
+        listOfMovies[12]=new Movie("Monsters Inc 2","Jackson","2");
+        listOfMovies[13]=new Movie("Ted","Alex","10");
+        listOfMovies[14]=new Movie("How to Survive a Plague","David France","N/A");
     }
 
      void displayWelcomeMessage(String message)
@@ -36,19 +54,19 @@ public class Biblioteca {
     {
            System.out.println("Book Name------Status");
 
-           for(int iCounter=0;iCounter<=listOfBooks.length-1;iCounter++)
+           for(Book b:listOfBooks)
            {
-               System.out.println(listOfBooks[iCounter].displayBookDetails());
+               System.out.println(b.displayBookDetails());
            }
         return 0;
     }
     Book findBookAvailability(String bookToSearch)
     {
-        for(int iCounter=0;iCounter<listOfBooks.length-1;iCounter++)
+        for(Book b:listOfBooks)
         {
-            if(listOfBooks[iCounter].bookInLibrary(bookToSearch))
+            if(b.bookInLibrary(bookToSearch))
             {
-                return listOfBooks[iCounter];
+                return b;
             }
         }
         return null;
@@ -86,6 +104,14 @@ public class Biblioteca {
           System.out.print(message);
     }
 
+    void displayAllMovie()
+    {
+        for(Movie m:listOfMovies)
+        {
+            m.displayMovieDetails();
+        }
+    }
+
     String displayOptions() throws IOException
     {
         BufferedReader dataInput=new BufferedReader(new InputStreamReader(System.in)) ;
@@ -95,7 +121,8 @@ public class Biblioteca {
         System.out.println("1->See all the books in the library");
         System.out.println("2->Reserve a book") ;
         System.out.println("3->Check your details");
-        System.out.println("4->Exit");
+        System.out.println("4->Display Movies");
+        System.out.println("5->Exit");
 
         do
         {
@@ -108,7 +135,7 @@ public class Biblioteca {
 
     public boolean validateChoice(String choice)
     {
-        return(!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4"));
+        return !choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5");
     }
 
     public static void main( String args[]) throws IOException
@@ -119,7 +146,7 @@ public class Biblioteca {
         library.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
 
         memberChoice=Integer.parseInt(library.displayOptions());
-        while(memberChoice!=4)
+        while(memberChoice!=5)
         {
             switch(memberChoice)
             {
@@ -128,6 +155,8 @@ public class Biblioteca {
                 case 2: library.reserveBook();
                     break;
                 case 3: library.viewDetails("Please talk to Librarian. Thank you.");
+                    break;
+                case 4: library.displayAllMovie();
                     break;
             }
             memberChoice=Integer.parseInt(library.displayOptions());

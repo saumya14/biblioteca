@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import static org.junit.Assert.assertTrue;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,14 +20,16 @@ public class TestMovie extends TestCase
     {
         super.setUp();
         Movie mTest=new Movie("LOTR","ABC","3");
+        String separator;
 
         PrintStream originalOut=System.out;
         OutputStream os=new ByteArrayOutputStream();
         PrintStream ps=new PrintStream(os);
         System.setOut(ps);
         mTest.displayMovieDetails();
+        separator=System.getProperty("line.separator");
 
-        assertEquals("LOTR ABC 3",os.toString());
+        assertEquals("LOTR ABC 3"+separator,os.toString());
         System.setOut(originalOut);
 
     }

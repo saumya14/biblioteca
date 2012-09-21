@@ -1,13 +1,6 @@
-import junit.framework.TestCase;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
 import static junit.framework.Assert.assertEquals;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
