@@ -8,4 +8,17 @@
 public class User {
     String userName;
     String password;
+    boolean loggedIn;
+
+    public User(String name,String password)
+    {
+        userName=name;
+        this.password=password;
+        loggedIn=false;
+    }
+
+    boolean validateUser(String inUser,String iPassword)
+    {
+        return(userName.equals(inUser) && password.equals(iPassword));
+    }
 }

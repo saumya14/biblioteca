@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import static junit.framework.Assert.assertEquals;
+
 /**
  * Created with IntelliJ IDEA.
  * User: user
@@ -9,5 +11,30 @@ import org.junit.Test;
  */
 public class TestUser {
     @Test
-    public void test
+    public void shouldSayValidUser()
+    {
+        User testUser=new User("XYZ","123");
+        boolean result;
+
+        result=testUser.validateUser("XYZ","123") ;
+
+        assertEquals(result,true);
+
+    }
+    @Test
+    public void shouldSayInvalidUser()
+    {
+        User testUser=new User("ABC","567");
+        boolean result;
+
+        result=testUser.validateUser("XYZ","123") ;
+
+        assertEquals(result,false);
+
+    }
+    @Test
+    public void shouldSayLoggedIn()
+    {
+
+    }
 }
