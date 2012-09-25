@@ -29,7 +29,7 @@ public class TestMovie extends TestCase
         mTest.displayMovieDetails();
         separator=System.getProperty("line.separator");
 
-        assertEquals("LOTR ABC 3"+separator,os.toString());
+        assertEquals("LOTR ABC ***"+separator,os.toString());
         System.setOut(originalOut);
 
     }

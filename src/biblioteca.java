@@ -14,6 +14,8 @@ public class Biblioteca
 {
     private ArrayList<Book> listOfBooks=new ArrayList<Book>();
     private ArrayList<Movie> listOfMovies=new ArrayList<Movie>();
+    private ArrayList<User> listofUsers=new ArrayList<User>();
+    private User loggedInUser=null;
 
     Biblioteca()
     {
@@ -43,6 +45,29 @@ public class Biblioteca
         listOfMovies.add(new Movie("Monsters Inc 2","Jackson","2"));
         listOfMovies.add(new Movie("Ted","Alex","10"));
         listOfMovies.add(new Movie("How to Survive a Plague","David France","N/A"));
+
+        listofUsers.add(new User("1111-111","abc","abc@gmail.com","1234"));
+        listofUsers.add(new User("1111-112","abc1","abc1@gmail.com","123"));
+        listofUsers.add(new User("1111-113","abc2","abc2@gmail.com","1234"));
+
+    }
+
+    String getUserInput(String prompt)
+    {
+        String inputLine=null;
+        System.out.print(prompt +" ");
+        try
+        {
+            BufferedReader is=new BufferedReader(new InputStreamReader(System.in));
+            inputLine=is.readLine();
+            if(inputLine.length()==0)
+                return null;
+        }
+        catch(IOException e)
+        {
+            System.out.println("IOException: "+e);
+        }
+        return inputLine;
     }
 
      void displayWelcomeMessage(String message)
@@ -74,12 +99,13 @@ public class Biblioteca
 
     void reserveBook() throws IOException
     {
-        BufferedReader dataRead=new BufferedReader(new InputStreamReader(System.in));
         String sReserveBookName;
         Book requestedBook;
-
-        System.out.print("Enter the name of the book you want to reserve:\t");
-        sReserveBookName=dataRead.readLine();
+        while(loggedInUser==null)
+        {
+            login();
+        }
+        sReserveBookName=getUserInput("Enter the name of the book you want to reserve: ");
         requestedBook=findBookAvailability(sReserveBookName);
 
         /*a null object would signify that the book is not present in the library   */
@@ -101,7 +127,11 @@ public class Biblioteca
 
     void viewDetails(String message)
     {
-          System.out.print(message);
+          if (loggedInUser==null)
+              System.out.println(message);
+
+          else
+            loggedInUser.displayUserDetails();
     }
 
     void displayAllMovie()
@@ -112,9 +142,29 @@ public class Biblioteca
         }
     }
 
+    void login()
+    {
+        System.out.println("You are not logged in!!! Please log in..");
+        String username=getUserInput("Please enter your user name:");
+        String password=getUserInput("Please enter the password:");
+
+        for(User u:listofUsers)
+        {
+            if(u.validateUser(username,password))
+            {
+                loggedInUser=u;
+                u.setLoggedInStatus();
+                break;
+            }
+        }
+        if(loggedInUser==null)
+        {
+            System.out.println("Wrong username/password");
+        }
+    }
+
     String displayOptions() throws IOException
     {
-        BufferedReader dataInput=new BufferedReader(new InputStreamReader(System.in)) ;
         String choice;
 
         System.out.println("--------Please choose what you want to do from the list given below:------");
@@ -126,8 +176,7 @@ public class Biblioteca
 
         do
         {
-            System.out.print("Please enter a valid choice:");
-            choice= dataInput.readLine();
+            choice= getUserInput("Please enter a valid choice: ");
         }while(validateChoice(choice));
 
         return choice;

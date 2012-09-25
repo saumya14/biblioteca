@@ -14,13 +14,21 @@ public class Movie {
     {
         movieName=name;
         directorName=dName;
-
         movieRating=rating;
     }
 
     public void displayMovieDetails()
     {
-             System.out.println(movieName+" "+directorName+" "+movieRating);
+        System.out.print(movieName+" "+directorName+" ");
+        if(movieRating.equals("N/A"))
+            System.out.println(movieRating);
+        else
+        {
+            for(int counter=1;counter<=Integer.parseInt(movieRating);counter++)
+                System.out.print("*");
+            System.out.print(System.getProperty("line.separator"));
+
+        }
     }
 
 }
