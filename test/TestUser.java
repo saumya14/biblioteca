@@ -33,8 +33,24 @@ public class TestUser {
 
     }
     @Test
+    public void shouldSayNotLoggedIn()
+    {
+         User testUser=new User("ABC","123");
+         boolean result;
+
+        result=testUser.getLoggedInStatus();
+
+        assertEquals(result,false);
+    }
+    @Test
     public void shouldSayLoggedIn()
     {
+        User testUser=new User("ABC","123");
+        boolean result;
 
+        testUser.setLoggedInStatus();
+        result=testUser.getLoggedInStatus();
+
+        assertEquals(result,true);
     }
 }

@@ -10,39 +10,39 @@ import java.util.ArrayList;
  * Time: 1:26 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Biblioteca {
-    private Book listOfBooks[];
-    private Movie listOfMovies[];
+public class Biblioteca
+{
+    private ArrayList<Book> listOfBooks=new ArrayList<Book>();
+    private ArrayList<Movie> listOfMovies=new ArrayList<Movie>();
+
     Biblioteca()
     {
-        listOfBooks=new Book[10];
-        listOfBooks[0]=new Book("Harry Potter 1",true);
-        listOfBooks[1]=new Book("Harry Potter 2",true);
-        listOfBooks[2]=new Book("Harry Potter 3",true);
-        listOfBooks[3]=new Book("Harry Potter 4",true);
-        listOfBooks[4]=new Book("Harry Potter 5",true);
-        listOfBooks[5]=new Book("Harry Potter 6",true);
-        listOfBooks[6]=new Book("Harry Potter 7",true);
-        listOfBooks[7]=new Book("Little Women",true);
-        listOfBooks[8]=new Book("Little Women 2",true);
-        listOfBooks[9]=new Book("Little Women 3",true);
+        listOfBooks.add(new Book("Harry Potter 1",true));
+        listOfBooks.add(new Book("Harry Potter 2",true));
+        listOfBooks.add(new Book("Harry Potter 3",true));
+        listOfBooks.add(new Book("Harry Potter 4",true));
+        listOfBooks.add(new Book("Harry Potter 5",true));
+        listOfBooks.add(new Book("Harry Potter 6",true));
+        listOfBooks.add(new Book("Harry Potter 7",true));
+        listOfBooks.add(new Book("Little Women",true));
+        listOfBooks.add(new Book("Little Women 2",true));
+        listOfBooks.add(new Book("Little Women 3",true));
 
-        listOfMovies=new Movie[15];
-        listOfMovies[0]=new Movie("LOTR -Fellowship","Peter Jackson","1");
-        listOfMovies[1]=new Movie("LOTR -Two Towers","Peter Jackson","1");
-        listOfMovies[2]=new Movie("LOTR -return of the King","Peter Jackson","1");
-        listOfMovies[3]=new Movie("Titanic","James","3");
-        listOfMovies[4]=new Movie("Titanic 3D","James","5");
-        listOfMovies[5]=new Movie("Shrek","Adam","1");
-        listOfMovies[6]=new Movie("Mission Impossible 1","Brian","1");
-        listOfMovies[7]=new Movie("Mission Impossible 2","Brian","1");
-        listOfMovies[8]=new Movie("Mission Impossible 3","Brian","1");
-        listOfMovies[9]=new Movie("Finding Nemo","ABC","8");
-        listOfMovies[10]=new Movie("Wall E","XYZ","9");
-        listOfMovies[11]=new Movie("Monsters Inc 1","James","5");
-        listOfMovies[12]=new Movie("Monsters Inc 2","Jackson","2");
-        listOfMovies[13]=new Movie("Ted","Alex","10");
-        listOfMovies[14]=new Movie("How to Survive a Plague","David France","N/A");
+        listOfMovies.add(new Movie("LOTR -Fellowship","Peter Jackson","1"));
+        listOfMovies.add(new Movie("LOTR -Two Towers","Peter Jackson","1"));
+        listOfMovies.add(new Movie("LOTR -return of the King","Peter Jackson","1"));
+        listOfMovies.add(new Movie("Titanic","James","3"));
+        listOfMovies.add(new Movie("Titanic 3D","James","5"));
+        listOfMovies.add(new Movie("Shrek","Adam","1"));
+        listOfMovies.add(new Movie("Mission Impossible 1","Brian","1"));
+        listOfMovies.add(new Movie("Mission Impossible 2","Brian","1"));
+        listOfMovies.add(new Movie("Mission Impossible 3","Brian","1"));
+        listOfMovies.add(new Movie("Finding Nemo","ABC","8"));
+        listOfMovies.add(new Movie("Wall E","XYZ","9"));
+        listOfMovies.add(new Movie("Monsters Inc 1","James","5"));
+        listOfMovies.add(new Movie("Monsters Inc 2","Jackson","2"));
+        listOfMovies.add(new Movie("Ted","Alex","10"));
+        listOfMovies.add(new Movie("How to Survive a Plague","David France","N/A"));
     }
 
      void displayWelcomeMessage(String message)
