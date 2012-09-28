@@ -13,24 +13,15 @@ import java.io.PrintStream;
  * Time: 9:51 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TestMovie extends TestCase
-{
+public class TestMovie extends TestCase {
     @Test
-    public void testDisplayMovieDetails()throws Exception
-    {
+    public void testDisplayMovieDetails() throws Exception {
         super.setUp();
-        Movie mTest=new Movie("LOTR","ABC","3");
-        String separator;
+        Movie mTest = new Movie("LOTR", "ABC", "3");
+        String result;
 
-        PrintStream originalOut=System.out;
-        OutputStream os=new ByteArrayOutputStream();
-        PrintStream ps=new PrintStream(os);
-        System.setOut(ps);
-        mTest.displayMovieDetails();
-        separator=System.getProperty("line.separator");
+        result = mTest.displayMovieDetails();
 
-        assertEquals("LOTR ABC ***"+separator,os.toString());
-        System.setOut(originalOut);
-
+        assertEquals("LOTR ABC ***", result);
     }
 }

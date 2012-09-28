@@ -9,46 +9,44 @@ import static junit.framework.Assert.assertEquals;
  * Time: 5:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TestBook
-{
+public class TestBook {
     @Test
-    public void isDisplayingBookDetails()
-    {
+    public void isDisplayingBookDetails() {
         Book testBook;
-        testBook = new Book("ABC",true);
+        testBook = new Book("ABC", true);
 
-        assertEquals("ABC"+" "+true,testBook.displayBookDetails());
+        assertEquals("ABC" + " " + true, testBook.displayBookDetails());
     }
+
     @Test
-    public void shouldSayBookNotInLibrary()
-    {
+    public void shouldSayBookNotInLibrary() {
         boolean presentInLibrary;
         Book testBook;
-        testBook=new Book("ABC",true);
+        testBook = new Book("ABC", true);
 
-        presentInLibrary=testBook.bookInLibrary("XYZ");
+        presentInLibrary = testBook.bookInLibrary("XYZ");
 
-        assertEquals(presentInLibrary,false);
+        assertEquals(presentInLibrary, false);
     }
+
     @Test
-    public void shouldSayBookIsInLibrary()
-    {
+    public void shouldSayBookIsInLibrary() {
         boolean presentInLibrary;
         Book testBook;
-        testBook=new Book("ABC",true);
+        testBook = new Book("ABC", true);
 
-        presentInLibrary=testBook.bookInLibrary("ABC");
+        presentInLibrary = testBook.bookInLibrary("ABC");
 
-        assertEquals(presentInLibrary,true);
+        assertEquals(presentInLibrary, true);
     }
+
     @Test
-    public void shouldReserveBook()
-    {
+    public void shouldReserveBook() {
         Book testBook;
-        testBook=new Book("ABC",true);
+        testBook = new Book("ABC", true);
 
-        testBook.setBookStatusToReserved();
+        testBook.issueBook();
 
-        assertEquals(testBook.getisAvailable(),false);
+        assertEquals(testBook.bookAvailability(), false);
     }
 }

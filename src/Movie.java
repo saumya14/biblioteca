@@ -10,25 +10,22 @@ public class Movie {
     private String directorName;
     private String movieRating;
 
-    public Movie(String name,String dName,String rating)
-    {
-        movieName=name;
-        directorName=dName;
-        movieRating=rating;
+    public Movie(String name, String dName, String rating) {
+        movieName = name;
+        directorName = dName;
+        movieRating = rating;
     }
 
-    public void displayMovieDetails()
-    {
-        System.out.print(movieName+" "+directorName+" ");
-        if(movieRating.equals("N/A"))
-            System.out.println(movieRating);
-        else
-        {
-            for(int counter=1;counter<=Integer.parseInt(movieRating);counter++)
-                System.out.print("*");
-            System.out.print(System.getProperty("line.separator"));
-
+    public String displayMovieDetails() {
+        String result;
+        result = movieName + " " + directorName + " ";
+        if (movieRating.equals("N/A"))
+            result += (movieRating);
+        else {
+            for (int counter = 1; counter <= Integer.parseInt(movieRating); counter++)
+                result = result + "*";
         }
+        return result;
     }
 
 }
