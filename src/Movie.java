@@ -6,9 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 public class Movie {
-    private String movieName;
-    private String directorName;
-    private String movieRating;
+    String movieName;
+    String directorName;
+    String movieRating;
 
     public Movie(String name, String dName, String rating) {
         movieName = name;
@@ -16,7 +16,7 @@ public class Movie {
         movieRating = rating;
     }
 
-    public String displayMovieDetails() {
+    String displayMovieDetails() {
         String result;
         result = movieName + " " + directorName + " ";
         if (movieRating.equals("N/A"))
@@ -27,5 +27,4 @@ public class Movie {
         }
         return result;
     }
-
 }

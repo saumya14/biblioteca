@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class BibliotecaLauncher {
     public static void main(String args[])throws Exception {
 
-       BibliotecaHelper helper=new BibliotecaHelper();
-
         SetUpLibrary setup = new SetUpLibrary();
         User loggedInUser;
         Librarian libAssistant;
@@ -23,12 +21,11 @@ public class BibliotecaLauncher {
         ArrayList<Movie> listOfMovies=setup.initializeMovies();
         ArrayList<User> listOfUsers=setup.initializeUsers();
 
-        helper.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
+        BibliotecaHelper.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
 
-        String choice;
         int memberChoice;
 
-        loggedInUser=helper.login(listOfUsers) ;
+        loggedInUser=BibliotecaHelper.login(listOfUsers) ;
         libAssistant = new Librarian(listOfBooks,loggedInUser);
 
 
@@ -38,22 +35,22 @@ public class BibliotecaLauncher {
 
 
         do{
-            memberChoice=helper.getUserChoice(listOfChoices.size());
+            memberChoice=BibliotecaHelper.getUserChoice(listOfChoices.size());
             switch (memberChoice) {
                 case 0:
-                    helper.displayAllBooks(listOfBooks);
+                    BibliotecaHelper.displayAllBooks(listOfBooks);
                     break;
                 case 1:
                     InputOutput.displayOutput(libAssistant.reserveBook(InputOutput.getUserInput("Enter the name of the book you want to reserve: ")));
                     break;
                 case 2:
-                    helper.viewDetails(loggedInUser);
+                    BibliotecaHelper.viewDetails(loggedInUser);
                     break;
                 case 3:
-                    helper.displayAllMovies(listOfMovies);
+                    BibliotecaHelper.displayAllMovies(listOfMovies);
                     break;
 
             }
-        }     while(memberChoice!=4);
+        }while(memberChoice!=4);
     }
 }

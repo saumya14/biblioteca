@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Librarian {
     ArrayList<Book> listOfBooks;
     User loggedInUser;
-    BibliotecaHelper helper;
 
     Librarian(ArrayList<Book> listBooks,User loggedUser) {
 
@@ -19,7 +18,7 @@ public class Librarian {
         loggedInUser=loggedUser;
     }
 
-    public String reserveBook(String requestedBookName) throws IOException {
+    String reserveBook(String requestedBookName) throws IOException {
         Book requestedBook;
         if (loggedInUser == null) {
             return "You cannot issue a book since you are not logged in.";
@@ -30,7 +29,7 @@ public class Librarian {
         if (requestedBook == null)
             return "Sorry we don't have that book yet";
         else {
-            if (requestedBook.bookAvailability()) {
+            if (requestedBook.isBookAvailable()) {
                 requestedBook.issueBook();
                 return "Thank you. Enjoy the book";
             } else {

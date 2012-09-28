@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class BibliotecaHelper {
 
-    public void displayAllMovies(ArrayList<Movie> listMovies) {
+    static void displayAllMovies(ArrayList<Movie> listMovies) {
 
         InputOutput.displayOutput("Movie Name-----------------Director-------------Rating");
 
@@ -17,7 +17,7 @@ public class BibliotecaHelper {
             InputOutput.displayOutput(m.displayMovieDetails());
     }
 
-    public void displayAllBooks(ArrayList<Book> listBooks) {
+    static void displayAllBooks(ArrayList<Book> listBooks) {
 
         InputOutput.displayOutput("Book Name------Status");
 
@@ -26,27 +26,29 @@ public class BibliotecaHelper {
         }
     }
 
-    public void viewDetails(User loggedInUser) {
+    static void viewDetails(User loggedInUser) {
         if (loggedInUser == null)
             InputOutput.displayOutput("Please talk to the librarian");
 
         else
             InputOutput.displayOutput(loggedInUser.displayUserDetails());
     }
-    static Book findBookAvailability(String bookToSearch,ArrayList<Book> listBooks) {
+
+    static Book findBookAvailability(String bookToSearch, ArrayList<Book> listBooks) {
 
         for (Book b : listBooks) {
-            if (b.bookInLibrary(bookToSearch)) {
+            if (b.isBookInLibrary(bookToSearch)) {
                 return b;
             }
         }
         return null;
     }
-    public void displayWelcomeMessage(String message) {
+
+    static void displayWelcomeMessage(String message) {
         InputOutput.displayOutput(message);
     }
 
-    public boolean validateChoice(String choice,int size) {
+    static boolean validateChoice(String choice, int size) {
 
         for (int counter = 0; counter <= size; counter++) {
             if (Integer.parseInt(choice) == counter)
@@ -54,8 +56,9 @@ public class BibliotecaHelper {
         }
         return false;
     }
-    public User login(ArrayList<User> listUsers) {
-        User loggedInUser=null;
+
+    static User login(ArrayList<User> listUsers) {
+        User loggedInUser = null;
         InputOutput.displayOutput("You are not logged in!!! Please log in..");
         String username = InputOutput.getUserInput("Please enter your user name:");
         String password = InputOutput.getUserInput("Please enter the password:");
@@ -72,14 +75,13 @@ public class BibliotecaHelper {
         }
         return loggedInUser;
     }
-    public int getUserChoice(int size)
-    {
+
+    static int getUserChoice(int size) {
         String choice;
         do {
             choice = InputOutput.getUserInput("Please enter a valid choice: ");
-        } while (!validateChoice(choice,size));
+        } while (!validateChoice(choice, size));
 
         return Integer.parseInt(choice);
     }
-
 }

@@ -24,7 +24,7 @@ public class TestBook {
         Book testBook;
         testBook = new Book("ABC", true);
 
-        presentInLibrary = testBook.bookInLibrary("XYZ");
+        presentInLibrary = testBook.isBookInLibrary("XYZ");
 
         assertEquals(presentInLibrary, false);
     }
@@ -35,7 +35,7 @@ public class TestBook {
         Book testBook;
         testBook = new Book("ABC", true);
 
-        presentInLibrary = testBook.bookInLibrary("ABC");
+        presentInLibrary = testBook.isBookInLibrary("ABC");
 
         assertEquals(presentInLibrary, true);
     }
@@ -47,6 +47,6 @@ public class TestBook {
 
         testBook.issueBook();
 
-        assertEquals(testBook.bookAvailability(), false);
+        assertEquals(testBook.isBookAvailable(), false);
     }
 }

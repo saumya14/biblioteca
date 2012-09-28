@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class SetUpLibrary {
-
     ArrayList<Book> listOfBooks = new ArrayList<Book>();
     ArrayList<User> listOfUsers = new ArrayList<User>();
     ArrayList<Movie> listOfMovies = new ArrayList<Movie>();

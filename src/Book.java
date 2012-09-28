@@ -14,7 +14,7 @@ public class Book {
         isAvailable = availability;
     }
 
-    boolean bookAvailability() {
+    boolean isBookAvailable() {
         return isAvailable;
     }
 
@@ -22,7 +22,7 @@ public class Book {
         return bookName + " " + isAvailable;
     }
 
-    boolean bookInLibrary(String bookToFind) {
+    boolean isBookInLibrary(String bookToFind) {
         return bookName.equals(bookToFind);
     }
 

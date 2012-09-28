@@ -10,8 +10,7 @@ import java.io.InputStreamReader;
  * To change this template use File | Settings | File Templates.
  */
 public class InputOutput {
-
-    public static String getUserInput(String prompt) {
+        static String getUserInput(String prompt) {
         String inputLine = null;
         System.out.print(prompt + " ");
         try {
@@ -25,7 +24,7 @@ public class InputOutput {
         return inputLine;
     }
 
-    public static void displayOutput(String message) {
+    static void displayOutput(String message) {
         System.out.println(message);
     }
 }
