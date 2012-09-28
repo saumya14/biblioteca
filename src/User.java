@@ -12,37 +12,27 @@ public class User {
     String contactNumber;
     boolean loggedInStatus;
 
-    public User(String name,String password,String email,String phone)
-    {
-        userName=name;
-        this.password=password;
-        emailAddress=email;
-        contactNumber=phone;
-        loggedInStatus=false;
+    public User(String name, String password, String email, String phone) {
+        userName = name;
+        this.password = password;
+        emailAddress = email;
+        contactNumber = phone;
+        loggedInStatus = false;
     }
 
-    boolean validateUser(String inUser,String iPassword)
-    {
-        return(userName.equals(inUser) && password.equals(iPassword));
+    boolean validateUser(String inUser, String iPassword) {
+        return (userName.equals(inUser) && password.equals(iPassword));
     }
 
-    boolean getLoggedInStatus()
-    {
+    boolean isLoggedIn() {
         return loggedInStatus;
     }
 
-    void setLoggedInStatus()
-    {
-        loggedInStatus=true;
+    void loggedIn() {
+        loggedInStatus = true;
     }
 
-    String getUserName()
-    {
-        return userName;
-    }
-
-    void displayUserDetails()
-    {
-        System.out.println(userName+" "+emailAddress+" "+contactNumber);
+    String displayUserDetails() {
+        return userName + " " + emailAddress + " " + contactNumber;
     }
 }

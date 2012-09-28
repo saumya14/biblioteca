@@ -5,30 +5,28 @@
  * Time: 5:03 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Book
-{
+public class Book {
     private String bookName;
     private boolean isAvailable;
 
-    Book(String name,boolean availability)
-    {
-        bookName=name;
-        isAvailable=availability;
+    Book(String name, boolean availability) {
+        bookName = name;
+        isAvailable = availability;
     }
-    boolean getisAvailable()
-    {
+
+    boolean bookAvailability() {
         return isAvailable;
     }
-    String displayBookDetails()
-    {
-           return bookName+" "+isAvailable;
+
+    String displayBookDetails() {
+        return bookName + " " + isAvailable;
     }
-    boolean bookInLibrary(String bookToFind)
-    {
+
+    boolean bookInLibrary(String bookToFind) {
         return bookName.equals(bookToFind);
     }
-    void setBookStatusToReserved()
-    {
-        isAvailable=false;
+
+    void issueBook() {
+        isAvailable = false;
     }
 }
