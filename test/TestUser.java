@@ -60,16 +60,7 @@ public class TestUser {
     @Test
     public void shouldDisplayUserDetails() throws Exception {
         User testUser = new User("ABC", "123", "ABC@gmail.com", "91-12345");
-        String separator;
 
-        PrintStream originalOut = System.out;
-        OutputStream os = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(os);
-        System.setOut(ps);
-        testUser.displayUserDetails();
-        separator = System.getProperty("line.separator");
-
-        assertEquals("ABC ABC@gmail.com 91-12345" + separator, os.toString());
-        System.setOut(originalOut);
+        assertEquals("ABC ABC@gmail.com 91-12345",testUser.displayUserDetails());
     }
 }
