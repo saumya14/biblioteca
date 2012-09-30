@@ -12,10 +12,10 @@ public class Librarian {
     ArrayList<Book> listOfBooks;
     User loggedInUser;
 
-    Librarian(ArrayList<Book> listBooks,User loggedUser) {
+    Librarian(ArrayList<Book> listBooks, User loggedUser) {
 
         listOfBooks = listBooks;
-        loggedInUser=loggedUser;
+        loggedInUser = loggedUser;
     }
 
     String reserveBook(String requestedBookName) throws IOException {
@@ -23,7 +23,7 @@ public class Librarian {
         if (loggedInUser == null) {
             return "You cannot issue a book since you are not logged in.";
         }
-        requestedBook = BibliotecaHelper.findBookAvailability(requestedBookName,listOfBooks);
+        requestedBook = BibliotecaHelper.findBookAvailability(requestedBookName, listOfBooks);
 
         /*a null object would signify that the book is not present in the library   */
         if (requestedBook == null)

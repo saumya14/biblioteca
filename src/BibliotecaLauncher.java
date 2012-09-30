@@ -11,22 +11,22 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class BibliotecaLauncher {
-    public static void main(String args[])throws Exception {
+    public static void main(String args[]) throws Exception {
 
         SetUpLibrary setup = new SetUpLibrary();
         User loggedInUser;
         Librarian libAssistant;
-        ArrayList<String> listOfChoices=setup.initializeChoices();
-        ArrayList<Book> listOfBooks=setup.initializeBooks();
-        ArrayList<Movie> listOfMovies=setup.initializeMovies();
-        ArrayList<User> listOfUsers=setup.initializeUsers();
+        ArrayList<String> listOfChoices = setup.initializeChoices();
+        ArrayList<Book> listOfBooks = setup.initializeBooks();
+        ArrayList<Movie> listOfMovies = setup.initializeMovies();
+        ArrayList<User> listOfUsers = setup.initializeUsers();
 
         BibliotecaHelper.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
 
         int memberChoice;
 
-        loggedInUser=BibliotecaHelper.login(listOfUsers) ;
-        libAssistant = new Librarian(listOfBooks,loggedInUser);
+        loggedInUser = BibliotecaHelper.login(listOfUsers);
+        libAssistant = new Librarian(listOfBooks, loggedInUser);
 
 
         InputOutput.displayOutput("--------Please choose what you want to do from the list given below:------");
@@ -34,14 +34,15 @@ public class BibliotecaLauncher {
             InputOutput.displayOutput(s);
 
 
-        do{
-            memberChoice=BibliotecaHelper.getUserChoice(listOfChoices.size());
+        do {
+            memberChoice = BibliotecaHelper.getUserChoice(listOfChoices.size());
             switch (memberChoice) {
                 case 0:
                     BibliotecaHelper.displayAllBooks(listOfBooks);
                     break;
                 case 1:
-                    InputOutput.displayOutput(libAssistant.reserveBook(InputOutput.getUserInput("Enter the name of the book you want to reserve: ")));
+                    String requestedBook = InputOutput.getUserInput("Enter the name of the book you want to reserve: ");
+                    InputOutput.displayOutput(libAssistant.reserveBook(requestedBook));
                     break;
                 case 2:
                     BibliotecaHelper.viewDetails(loggedInUser);
@@ -51,6 +52,6 @@ public class BibliotecaLauncher {
                     break;
 
             }
-        }while(memberChoice!=4);
+        } while (memberChoice != 4);
     }
 }

@@ -79,7 +79,7 @@ public class BibliotecaHelper {
     static int getUserChoice(int size) {
         String choice;
         do {
-            choice = InputOutput.getUserInput("Please enter a valid choice: ");
+            choice = InputOutput.getUserInput("Please enter your choice: ");
         } while (!validateChoice(choice, size));
 
         return Integer.parseInt(choice);
