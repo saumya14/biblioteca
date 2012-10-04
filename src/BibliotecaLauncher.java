@@ -10,12 +10,12 @@ import java.util.ArrayList;
 public class BibliotecaLauncher {
     static ArrayList<Command> executeCommand=new ArrayList<Command>();
 
-    static void setupChoices(BibliotecaHelper helper){
+    static void setupChoices(BibliotecaHelper helper,Librarian libAssistant){
         executeCommand.add(new DisplayBooksCommand(helper));
-        executeCommand.add(null);
+        executeCommand.add(new ReserveBookCommand(libAssistant));
         executeCommand.add(new ViewUserDetailsCommand(helper));
         executeCommand.add(new DisplayMovieDetailsCommand(helper));
-
+        executeCommand.add(new ExitCommand());
     }
 
     public static void main(String args[]) throws Exception {
@@ -27,15 +27,18 @@ public class BibliotecaLauncher {
         ArrayList<Book> listOfBooks = setup.initializeBooks();
         ArrayList<Movie> listOfMovies = setup.initializeMovies();
         ArrayList<User> listOfUsers = setup.initializeUsers();
+
         BibliotecaHelper helper=new BibliotecaHelper(listOfMovies,listOfBooks,listOfUsers) ;
+        loggedInUser = helper.login();
+        libAssistant = new Librarian(listOfBooks, loggedInUser);
+
+
 
         BibliotecaHelper.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
-        setupChoices(helper);
+        setupChoices(helper,libAssistant);
 
         int memberChoice;
 
-        loggedInUser = helper.login();
-        libAssistant = new Librarian(listOfBooks, loggedInUser);
 
 
         InputOutput.displayOutput("--------Please choose what you want to do from the list given below:------");
@@ -46,6 +49,6 @@ public class BibliotecaLauncher {
         do {
             memberChoice = BibliotecaHelper.getUserChoice(listOfChoices.size());
             executeCommand.get(memberChoice).execute();
-        } while (memberChoice != 4);
+        } while (true);
     }
 }
