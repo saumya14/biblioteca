@@ -1,6 +1,3 @@
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -11,6 +8,16 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class BibliotecaLauncher {
+    static ArrayList<Command> executeCommand=new ArrayList<Command>();
+
+    static void setupChoices(BibliotecaHelper helper){
+        executeCommand.add(new DisplayBooksCommand(helper));
+        executeCommand.add(null);
+        executeCommand.add(new ViewUserDetailsCommand(helper));
+        executeCommand.add(new DisplayMovieDetailsCommand(helper));
+
+    }
+
     public static void main(String args[]) throws Exception {
 
         SetUpLibrary setup = new SetUpLibrary();
@@ -20,12 +27,14 @@ public class BibliotecaLauncher {
         ArrayList<Book> listOfBooks = setup.initializeBooks();
         ArrayList<Movie> listOfMovies = setup.initializeMovies();
         ArrayList<User> listOfUsers = setup.initializeUsers();
+        BibliotecaHelper helper=new BibliotecaHelper(listOfMovies,listOfBooks,listOfUsers) ;
 
         BibliotecaHelper.displayWelcomeMessage("Hi Member. Welcome to Bangalore Biblioteca");
+        setupChoices(helper);
 
         int memberChoice;
 
-        loggedInUser = BibliotecaHelper.login(listOfUsers);
+        loggedInUser = helper.login();
         libAssistant = new Librarian(listOfBooks, loggedInUser);
 
 
@@ -36,22 +45,7 @@ public class BibliotecaLauncher {
 
         do {
             memberChoice = BibliotecaHelper.getUserChoice(listOfChoices.size());
-            switch (memberChoice) {
-                case 0:
-                    BibliotecaHelper.displayAllBooks(listOfBooks);
-                    break;
-                case 1:
-                    String requestedBook = InputOutput.getUserInput("Enter the name of the book you want to reserve: ");
-                    InputOutput.displayOutput(libAssistant.reserveBook(requestedBook));
-                    break;
-                case 2:
-                    BibliotecaHelper.viewDetails(loggedInUser);
-                    break;
-                case 3:
-                    BibliotecaHelper.displayAllMovies(listOfMovies);
-                    break;
-
-            }
+            executeCommand.get(memberChoice).execute();
         } while (memberChoice != 4);
     }
 }

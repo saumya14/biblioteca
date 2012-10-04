@@ -12,19 +12,17 @@ import static junit.framework.Assert.assertEquals;
  * To change this template use File | Settings | File Templates.
  */
 public class TestBibliotecaHelper {
-    BibliotecaHelper helper = new BibliotecaHelper();
-
     @Test
     public void shouldSayValidChoice() {
 
-        boolean result = helper.validateChoice("2", 3);
+        boolean result = BibliotecaHelper.validateChoice("2", 3);
 
         assertEquals(result, true);
     }
     @Test
     public void shouldSayInValidChoice() {
 
-        boolean result = helper.validateChoice("4", 3);
+        boolean result = BibliotecaHelper.validateChoice("4", 3);
 
         assertEquals(result,false);
     }

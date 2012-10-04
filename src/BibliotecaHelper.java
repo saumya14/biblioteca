@@ -8,8 +8,19 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class BibliotecaHelper {
+    ArrayList<Movie> listMovies;
+    ArrayList<Book> listBooks;
+    User loggedInUser;
+    ArrayList<User> listUsers;
 
-    static void displayAllMovies(ArrayList<Movie> listMovies) {
+    BibliotecaHelper(ArrayList<Movie> listMovies,ArrayList<Book> listBooks,ArrayList<User> listUsers) {
+        this.listMovies=listMovies;
+        this.listBooks=listBooks;
+        this.listUsers=listUsers;
+    }
+
+
+    void displayAllMovies() {
 
         InputOutput.displayOutput("Movie Name-----------------Director-------------Rating");
 
@@ -17,7 +28,7 @@ public class BibliotecaHelper {
             InputOutput.displayOutput(m.displayMovieDetails());
     }
 
-    static void displayAllBooks(ArrayList<Book> listBooks) {
+    void displayAllBooks() {
 
         InputOutput.displayOutput("Book Name------Status");
 
@@ -26,7 +37,7 @@ public class BibliotecaHelper {
         }
     }
 
-    static void viewDetails(User loggedInUser) {
+    void viewUserDetails() {
         if (loggedInUser == null)
             InputOutput.displayOutput("Please talk to the librarian");
 
@@ -34,9 +45,9 @@ public class BibliotecaHelper {
             InputOutput.displayOutput(loggedInUser.displayUserDetails());
     }
 
-    static Book findBookAvailability(String bookToSearch, ArrayList<Book> listBooks) {
+    static Book findBookAvailability(String bookToSearch,ArrayList<Book> bookList) {
 
-        for (Book b : listBooks) {
+        for (Book b : bookList) {
             if (b.isBookInLibrary(bookToSearch)) {
                 return b;
             }
@@ -57,8 +68,7 @@ public class BibliotecaHelper {
         return false;
     }
 
-    static User login(ArrayList<User> listUsers) {
-        User loggedInUser = null;
+    User login() {
         InputOutput.displayOutput("You are not logged in!!! Please log in..");
         String username = InputOutput.getUserInput("Please enter your user name:");
         String password = InputOutput.getUserInput("Please enter the password:");
